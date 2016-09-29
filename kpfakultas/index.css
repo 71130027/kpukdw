@@ -1,0 +1,14 @@
+#cpanel{
+	width: 100%;
+	display: table;
+}
+
+.cphome{
+	width: 96.5%;
+	height: 150px;
+	margin: 10px 1%;
+	padding: 40px 0.75%;
+	background-color: #FFFFFF;
+	float: left;
+	text-align: center;
+}

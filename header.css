@@ -1,0 +1,122 @@
+@import url(http://fonts.googleapis.com/css?family=Kreon:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import url(http://fonts.googleapis.com/css?family=Noticia+Text);
+
+body{
+	margin: 0;
+}
+
+#header{
+	width: 100%;
+	min-width: 800px;
+	height: 200px;
+	background-color: #47A3DA;
+}
+
+#headercontainer{
+	position: relative;
+}
+
+#head{
+	padding: 0 50;
+	margin: 0 auto;
+	margin-top: 20px;
+	display: block;
+	float: left;
+}
+
+#title{
+	font-family: Kreon, serif;
+	font-size: 50px;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: 800;
+}
+
+#subtitle{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 21px;
+	text-decoration: none;
+	color: #FFFFFF;
+	margin-top: 0;
+}
+
+#menu{
+	width: 100%;
+	min-width: 800px;
+	background-color: #2E2E2E;
+	min-height: 50px;
+	position: relative;
+}
+
+#signin{
+	position: absolute;
+	display: inline-block;
+	left: 150px;
+	height: 50px;
+	background-color: #AAAAAA;
+	color: #FF0000;
+}
+
+#gauth{
+	position: relative;
+	height: 50px;
+	margin: 0 5;
+}
+
+#gauth div{
+	background-color: #000000;
+	position: absolute;
+	transform: translate(0,-50%);
+	top: 50%;
+}
+
+#menupanel{
+	float: right;
+	display: inline-block;
+	height: 50px;
+	margin: 0 150 0 0;
+	padding: 0;
+}
+
+#menupanel a li.activated{
+	background-color: #000000;
+	border: 1px #000000 solid;
+}
+
+#menupanel a li{
+	position: relative;
+	text-decoration: none;
+}
+
+#menupanel a li{
+	float: left;
+	list-style: none;
+	display: block;
+	margin: 0;
+	padding: 15 10;
+	border: 1px #2E2E2E solid;
+}
+
+#menupanel a li:hover{
+	background-color: #000000;
+	border: 1px #000000 solid;
+}
+
+#menupanel a li div{
+	display: block;
+	color: #FFFFFF;
+	width: auto;
+	margin: 0;
+}
+
+#content{
+	margin: 0;
+	padding: 0;
+}
+
+#headcontainer{
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(71,163,218,0.5)),to(rgba(255,255,255,0)), color-stop(1,#000));
+	min-width: 750px;
+	padding: 50 25;
+}
