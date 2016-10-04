@@ -1,14 +1,44 @@
-cpanel{
+#cpanel{
 	width: 100%;
 	display: table;
 }
 
 .cphome{
-	width: 96.5%;
-	height: 150px;
+	width: 90%;
 	margin: 10px 1%;
-	padding: 40px 0.75%;
+	padding: 40px 4%;
 	background-color: #FFFFFF;
 	float: left;
-	text-align: center;
+	text-align: left;
+}
+
+#ctitle{
+	font-family: Kreon, serif;
+	font-size: 28pt;
+	text-decoration: none;
+	color: #47A3DA;
+	font-weight: 800;
+	margin-top: 0;
+	display: block;
+}
+
+.cphome pre{
+	font-family: 'Noticia Text', serif;
+	font-size: 16pt;
+	display: inline;
+}
+
+.cphome input, select{
+	font-family: 'Noticia Text', serif;
+	font-size: 14pt;
+	margin-bottom: 20px;
+	height: 30px;
+	width: 350px;
+}
+
+#csubmit{
+	background-color: #FFFFFF;
+	height: 40px;
+	width: 583px;
+	border: 2px solid #47A3DA;
 }
