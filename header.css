@@ -54,8 +54,8 @@ body{
 	display: inline-block;
 	left: 150px;
 	height: 50px;
-	background-color: #AAAAAA;
-	color: #FF0000;
+	color: #FFFFFF;
+	font-family: 'Noticia Text', sans-serif;
 }
 
 #gauth{
@@ -65,10 +65,10 @@ body{
 }
 
 #gauth div{
-	background-color: #000000;
 	position: absolute;
 	transform: translate(0,-50%);
 	top: 50%;
+	width: 180px;
 }
 
 #menupanel{

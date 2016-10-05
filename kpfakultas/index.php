@@ -1,5 +1,9 @@
 <?php
-	include('../header.php');
+	include('header.php');
+	$nama = 'Danny Joe Dozan';
+	$nim = '71130027';
+	$prodi = 'Teknik Informatika';
+	$sks = '128';
 ?>
 <html>
 	<body>
@@ -8,19 +12,19 @@
 				<link rel="stylesheet" type="text/css" href="kpfakultas/index.css">
 				<div id="cpanel">
 					<div class="cphome">
-						<form action="submit.php">
+						<form action="submit.php" method="post">
 							<p id="ctitle">KP Reguler</p>
 							<pre>Nama:				</pre>
-							<input name="nama" type="text" readonly value="<?php echo 'Danny Joe Dozan' ?>">
+							<input name="nama" type="text" readonly value="<?php echo $nama ?>">
 							<br>
 							<pre>NIM:				</pre>
-							<input name="nim" type="text" readonly value="<?php echo '71130027' ?>">
+							<input name="nim" type="text" readonly value="<?php echo $nim ?>">
 							<br>
 							<pre>Prodi:				</pre>
-							<input name="prodi" type="text" readonly value="<?php echo 'Teknik Informatika' ?>">
+							<input name="prodi" type="text" readonly value="<?php echo $prodi ?>">
 							<br>
 							<pre>Jumlah SKS:			</pre>
-							<input name="sks" type="text" readonly value="<?php echo '128' ?>">
+							<input name="sks" type="text" readonly value="<?php echo $sks ?>">
 							<br>
 							<pre>No. Telpon aktif:		</pre>
 							<input name="telp" type="number" required>
