@@ -1,0 +1,187 @@
+@import url(http://fonts.googleapis.com/css?family=Kreon:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import url(http://fonts.googleapis.com/css?family=Noticia+Text);
+
+body{
+	margin: 0;
+}
+
+#header{
+	width: 100%;
+	min-width: 800px;
+	height: 200px;
+	background-color: #47A3DA;
+}
+
+#headercontainer{
+	position: relative;
+}
+
+#head{
+	padding: 0 50;
+	margin: 0 auto;
+	margin-top: 20px;
+	display: block;
+	float: left;
+}
+
+#title{
+	font-family: Kreon, serif;
+	font-size: 50px;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: 800;
+}
+
+#subtitle{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 21px;
+	text-decoration: none;
+	color: #FFFFFF;
+	margin-top: 0;
+}
+
+#menu{
+	width: 100%;
+	min-width: 800px;
+	background-color: #2E2E2E;
+	min-height: 50px;
+	position: relative;
+}
+
+#signin{
+	position: absolute;
+	display: inline-block;
+	left: 150px;
+	height: 50px;
+	background-color: #AAAAAA;
+	color: #FF0000;
+}
+
+#gauth{
+	position: relative;
+	height: 50px;
+	margin: 0 5;
+}
+
+#gauth div{
+	background-color: #000000;
+	position: absolute;
+	transform: translate(0,-50%);
+	top: 50%;
+}
+ul {
+    list-style-type: none;
+    margin: 0 150 0 0;
+    padding: 0;
+    display:block;
+}
+li{
+	float:right;
+
+}
+li a {
+	
+	color:white;
+	text-decoration:none;
+}
+
+.continer{
+	min-height: 264px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(71,163,218,0.5)),to(rgba(255,255,255,0)), color-stop(1,#000));
+}
+tr:hover {background-color: #d6d6d6}
+table{
+	border-collapse: collapse;
+	width: 80%;
+	margin-left: 60px;
+}
+.lamaran th {
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding-top:40px;
+    padding-right:10px;
+}
+.lamaran td{
+	border-bottom: 1px solid black;
+	text-align: center;
+	vertical-align: middle;
+	padding:10 5 10 5;
+
+}
+
+#footer{
+	margin-top:80px;
+	background-color: #95CCED;
+	position: relative;
+    bottom: 0;
+    right: 0;
+    left:0;
+    
+    
+}
+.text-muted{
+	padding-left:80px;
+	padding-top:20px;
+	color:#777;
+}
+#terima{
+	background-color: #90EE90;
+	width: 70px;
+}
+#tolak{
+	background-color: #FF4C4C;
+	width: 70px;
+}
+.dropbtn {
+    background-color: #2e2e2e;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	
+    display: block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+	float:right;
+    
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+#download{
+	margin-left:60px;
+	padding-top:60px;
+}
+pre{
+	display:inline;
+}
