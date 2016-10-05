@@ -1,5 +1,5 @@
 <?php
-	$servername = "kapeti.hol.es";
+	$servername = "mysql.idhostinger.com";
 	$username = "u604461971_kpti";
 	$password = "kapefakultas2016";
 	$dbname = "u604461971_kpti";
