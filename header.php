@@ -2,8 +2,8 @@
 	header("Access-Control-Allow-Origin: *");
 	include('koneksi.php');
 	session_start();
-	$_SESSION['record'] = 2;
-	$_SESSION['last_accdec'] = "accept"; //none, pending, accept, decline
+	$_SESSION['record'] = 0;
+	$_SESSION['last_accdec'] = "none"; //none, pending, accept, decline
 ?>
 <html>
 	<head>
