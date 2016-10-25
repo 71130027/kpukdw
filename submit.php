@@ -1,5 +1,5 @@
 <?php
 	session_start();
 	//kirim ke database
-	header("location: ../public_html/");
+	header("location: index.php");
 ?>
