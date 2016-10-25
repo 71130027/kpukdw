@@ -34,25 +34,22 @@
 								<option value="a">A</option>
 								<option value="b">B</option>
 								<option value="c">C</option>
-								<option value="other">Lainnya...</option>
 							</select>
 							<br>
 							<pre>Proyek KP 2:			</pre>
-							<select name="kpc_2">
+							<select id="kpc_2" name="kpc_2" onchange="kpc();">
 								<option value="none">Tidak ada</option>
 								<option value="a">A</option>
 								<option value="b">B</option>
 								<option value="c">C</option>
-								<option value="other">Lainnya...</option>
 							</select>
 							<br>
 							<pre>Proyek KP 3:			</pre>
-							<select name="kpc_3">
+							<select id="kpc_3" name="kpc_3" disabled>
 								<option value="none">Tidak ada</option>
 								<option value="a">A</option>
 								<option value="b">B</option>
 								<option value="c">C</option>
-								<option value="other">Lainnya...</option>
 							</select>
 							<br>
 							<pre>Deskripsi Diri:</pre>

@@ -28,12 +28,18 @@
 	display: inline;
 }
 
-.cphome input, select{
+.cphome input, select, textarea{
 	font-family: 'Noticia Text', serif;
 	font-size: 14pt;
 	margin-bottom: 20px;
 	height: 30px;
 	width: 350px;
+}
+
+.cphome textarea.multirow{
+	max-width: 583px;
+	height: 110px;
+	width: 583px;
 }
 
 #csubmit{

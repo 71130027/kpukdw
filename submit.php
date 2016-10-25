@@ -1,5 +1,5 @@
 <?php
 	session_start();
-	session_destroy();
+	//kirim ke database
 	header("location: ../public_html/");
 ?>

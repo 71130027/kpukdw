@@ -8,6 +8,15 @@
 	<body>
 		<div id="content">
 			<div id="headcontainer">
+				<script>
+					console.log($('#kpa option:selected').val());
+					if($('#kpa option:selected').val() == "other")
+					{
+						$('#kpb').attr("disabled", false);
+					}
+					else
+						$('#kpb').attr("disabled", true);
+				</script>
 				<link rel="stylesheet" type="text/css" href="kpreguler/index.css">
 				<div id="cpanel">
 					<div class="cphome">
@@ -23,18 +32,22 @@
 							<input name="sks" type="text" readonly value="<?php echo $sks; ?>">
 							<br>
 							<pre>Nama Perusahaan:	</pre>
-							<select name="nama_perusahaan_kpa" required>
-								<option value="a">A</option>
+							<select id="kpa" name="nama_perusahaan_kpa" required onchange="kpab();">
+								<?php
+								//Ambil data dari database
+								echo '<option value="a">A</option>
 								<option value="b">B</option>
-								<option value="c">C</option>
+								<option value="c">C</option>';
+								?>
 								<option value="other">Lainnya...</option>
 							</select>
 							<br>
 							<pre>					</pre>
-							<input name="nama_perusahaan_kpb" type="text">
+							<input id="kpb" name="nama_perusahaan_kpb" type="text" disabled>
 							<br>
 							<pre>Job Description:		</pre>
-							<input name="jobdesc" type="text" required>
+							<br>
+							<textarea name="jobdesc" class="multirow" type="text" required></textarea>
 							<br>
 							<input name="submit" id="csubmit" type="submit">
 						</form>
