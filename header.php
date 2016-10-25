@@ -1,4 +1,5 @@
 <?php
+	header("Access-Control-Allow-Origin: *");
 	include('koneksi.php');
 	session_start();
 	$_SESSION['record'] = 2;
