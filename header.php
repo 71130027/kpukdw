@@ -1,58 +1,13 @@
 <?php
 	include('koneksi.php');
 	session_start();
+	$_SESSION['record'] = 2;
+	$_SESSION['last_accdec'] = "accept"; //none, pending, accept, decline
 ?>
 <html>
 	<head>
 		<title>KaPeTI</title>
-		<script>
-			function renderButton() {
-				gapi.signin2.render('google', {
-					'scope': 'email',
-					'width': 180,
-					'height': 32,
-					'longtitle': true,
-					'theme': 'light',
-					'onsuccess': onSignIn
-				});
-			}
-			
-			function goLoad(link)
-			{
-				$('#content').load(link + "/index.php #headcontainer");
-			}
-			
-			function onSignIn(googleUser) {
-				var profile = googleUser.getBasicProfile();
-
-				$.ajax({
-					url: 'gSignIn.php',
-					type: 'POST',               
-					// Form data
-					data: function(){
-						var email = profile.getEmail();
-						if(email.indexOf("@ti.ukdw.ac.id")!==-1)
-						{
-							var data = new FormData();
-							data.append('user', profile.getName());
-							data.append('email', profile.getEmail());
-							data.append('token', googleUser.getAuthResponse().id_token);
-							return data;
-						}
-					}(),
-					success: function (data) {
-						location.reload(true);
-					},
-					error: function (data) {
-					},
-					complete: function () {
-					},
-					cache: false,
-					contentType: false,
-					processData: false
-				});
-			}
-		</script>
+		<script src="scripts.js"></script>
 		<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 		<meta name="google-signin-client_id" content="650232885328-e6gsbsa4vgi5gv0nbv87ntjgiar9cfaq.apps.googleusercontent.com">
 		<script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
@@ -86,8 +41,15 @@
 				<?php
 					if(isset($_SESSION['user']))
 					{
-						echo '<a onclick="goLoad(\'pengajuan\')" href="#"><li><div id="p-pengajuan">Pengajuan KP</div></li></a>
-						<a href="signout.php"><li><div id="signinout">Log Out</div></li></a>';
+						if($_SESSION['record']==0||$_SESSION['last_accdec']=="decline"||$_SESSION['last_accdec']=="none")
+							echo '<a onclick="goLoad(\'status\')" href="#"><li><div id="p-pengajuan">Pengajuan KP</div></li></a>';
+						else if($_SESSION['record']>0&&$_SESSION['last_accdec']=="pending")
+							echo '<a onclick="goLoad(\'status\')" href="#"><li><div id="p-status">Status</div></li></a>';
+						else if($_SESSION['last_accdec']=="accept")
+							echo '<a onclick="goLoad(\'registrasi\')" href="#"><li><div id="p-registrasi">Registrasi</div></li></a>';
+						
+						echo '<a onclick="goLoad(\'download\')" href="#"><li><div id="p-download">Download</div></li></a>';
+						echo '<a href="signout.php"><li><div id="signinout">Log Out</div></li></a>';
 					}
 				?>
 			</ul>
