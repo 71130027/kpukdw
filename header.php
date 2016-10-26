@@ -50,7 +50,7 @@
 							echo '<a onclick="goLoad(\'registrasi\')" href="#"><li><div id="p-registrasi">Registrasi</div></li></a>';
 						
 						echo '<a onclick="goLoad(\'download\')" href="#"><li><div id="p-download">Download</div></li></a>';
-						echo '<a href="signout.php?reset=0"><li><div id="signinout">Log Out</div></li></a>';
+						echo '<a href="signout.php"><li><div id="signinout">Log Out</div></li></a>';
 					}
 				?>
 			</ul>
