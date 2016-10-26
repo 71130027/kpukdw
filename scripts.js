@@ -46,7 +46,7 @@ function onSignIn(googleUser) {
 		// Form data
 		data: function(){
 			var email = profile.getEmail();
-			if(email.indexOf("@ti.ukdw.ac.id")!==-1)
+			if(email.indexOf("@ti.ukdw.ac.id")!=-1)
 			{
 				var data = new FormData();
 				data.append('user', profile.getName());
@@ -54,9 +54,15 @@ function onSignIn(googleUser) {
 				data.append('token', googleUser.getAuthResponse().id_token);
 				return data;
 			}
+			else
+			{
+				var auth2 = gapi.auth2.getAuthInstance();
+				auth2.signOut();
+			}
 		}(),
 		success: function (data) {
-			location.reload(true);
+			var email = profile.getEmail();
+			if(email.indexOf("@ti.ukdw.ac.id")!=-1) location.reload(true);
 		},
 		error: function (data) {
 		},
