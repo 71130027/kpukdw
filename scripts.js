@@ -18,10 +18,20 @@ function kpab()
 {
 	if($('#kpa option:selected').val() == "other")
 	{
-		$('#kpb').attr("disabled", false);
+		$('#kpb').attr("hidden", false);
+		$('#kpb_name').attr("disabled", false);
+		$('#kpb_cp').attr("disabled", false);
+		$('#kpb_telp').attr("disabled", false);
+		$('#kpb_alamat').attr("disabled", false);
 	}
 	else
-		$('#kpb').attr("disabled", true);
+	{
+		$('#kpb_name').attr("disabled", true);
+		$('#kpb_cp').attr("disabled", true);
+		$('#kpb_telp').attr("disabled", true);
+		$('#kpb_alamat').attr("disabled", true);
+		$('#kpb').attr("hidden", true);
+	}
 }
 
 function kpc()
@@ -51,12 +61,13 @@ function onSignIn(googleUser) {
 				var data = new FormData();
 				data.append('user', profile.getName());
 				data.append('email', profile.getEmail());
-				data.append('token', googleUser.getAuthResponse().id_token);
+				data.append('id', profile.getId());
 				return data;
 			}
 			else
 			{
 				var auth2 = gapi.auth2.getAuthInstance();
+				window.alert("Maaf!\nUntuk khusus @ti.ukdw.ac.id saja!");
 				auth2.signOut();
 			}
 		}(),

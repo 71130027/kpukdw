@@ -1,9 +1,5 @@
 <?php
 	include('header.php');
-	$nama = 'Danny Joe Dozan';
-	$nim = '71130027';
-	$prodi = 'Teknik Informatika';
-	$sks = '128';
 ?>
 <html>
 	<body>
@@ -12,31 +8,34 @@
 				<link rel="stylesheet" type="text/css" href="kpfakultas/index.css">
 				<div id="cpanel">
 					<div class="cphome">
-						<form action="submit.php" method="post">
-							<p id="ctitle">KP Reguler</p>
+						<?php session_start(); ?>
+						<form action="submit.php?type=kpfakultas" method="post">
+							<p id="ctitle">KP Fakultas</p>
 							<pre>Nama:				</pre>
-							<input name="nama" type="text" readonly value="<?php echo $nama ?>">
+							<input name="nama" type="text" readonly value="<?php echo $_SESSION['user']; ?>">
 							<br>
 							<pre>NIM:				</pre>
-							<input name="nim" type="text" readonly value="<?php echo $nim ?>">
+							<input name="nim" type="text">
 							<br>
+<!--
 							<pre>Prodi:				</pre>
-							<input name="prodi" type="text" readonly value="<?php echo $prodi ?>">
+							<input name="prodi" type="text">
 							<br>
+-->
 							<pre>Jumlah SKS:			</pre>
-							<input name="sks" type="text" readonly value="<?php echo $sks ?>">
+							<input name="sks" type="text">
 							<br>
-							<pre>No. Telpon aktif:		</pre>
+							<pre>No. Telepon aktif:		</pre>
 							<input name="telp" type="number" required>
 							<br>
-							<pre>Proyek KP 1:			</pre>
+							<pre>Prioritas KP 1:			</pre>
 							<select name="kpc_1"required>
 								<option value="a">A</option>
 								<option value="b">B</option>
 								<option value="c">C</option>
 							</select>
 							<br>
-							<pre>Proyek KP 2:			</pre>
+							<pre>Prioritas KP 2:		</pre>
 							<select id="kpc_2" name="kpc_2" onchange="kpc();">
 								<option value="none">Tidak ada</option>
 								<option value="a">A</option>
@@ -44,7 +43,7 @@
 								<option value="c">C</option>
 							</select>
 							<br>
-							<pre>Proyek KP 3:			</pre>
+							<pre>Prioritas KP 3:		</pre>
 							<select id="kpc_3" name="kpc_3" disabled>
 								<option value="none">Tidak ada</option>
 								<option value="a">A</option>

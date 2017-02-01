@@ -1,0 +1,60 @@
+#cpanel{
+	width: 100%;
+	display: table;
+}
+
+table{
+	background-color: #FFFFFF;
+	width: 98%;
+	margin: 10px 1%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+th{
+	font-weight: 800;
+	background-color: #FFFFFF;
+}
+
+tr{
+	height: 30px;
+}
+
+tr:nth-child(even){
+	background-color: #EEEEFF;
+}
+
+tr:nth-child(odd){
+	background-color: #DDDDFF;
+}
+
+.cphome{
+	width: 46.5%;
+	height: 150px;
+	margin: 10px 1%;
+	padding: 40px 0.75%;
+	background-color: #FFFFFF;
+	float: left;
+	text-align: center;
+}
+
+.surat{
+	margin: 30px 1% 10px 1%;
+	height: 50px;
+	width: 300px;
+	position: relative;
+}
+
+.surat div{
+	padding: 0 10;
+	border: 1px solid #000000;
+	position: absolute;
+	transform: translate(0, -50%);
+	top: 50%;
+}
+
+.surat div button{
+	height: 30px;
+	background-color: transparent;
+	border: 1px solid #47A3DA;
+}

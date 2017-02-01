@@ -2,8 +2,23 @@
 	header("Access-Control-Allow-Origin: *");
 	include('koneksi.php');
 	session_start();
-	$_SESSION['record'] = 0;
-	$_SESSION['last_accdec'] = "none"; //none, pending, accept, decline
+	//lempar ke dosen/koor
+	$stat = 'NONE';
+	if(isset($_SESSION['id']))
+	{
+		$sql = "SELECT id_lamaran FROM lamaran WHERE google_id='".$_SESSION['id']."' ORDER BY id_lamaran DESC";
+		$res = $conn->query($sql);
+		$res = $res->fetch_assoc();
+		if($res)
+		{
+			$res = $res['id_lamaran'];
+			$sql = "SELECT status_pengajuan FROM lamaran WHERE id_lamaran='".$res."'";
+			$res = $conn->query($sql);
+			$res = $res->fetch_assoc();
+			$stat = $res['status_pengajuan'];
+			$_SESSION['last_statPengajuan'] = $stat;
+		}
+	}
 ?>
 <html>
 	<head>
@@ -40,13 +55,13 @@
 			<ul id="menupanel">
 				<a href=""><li><div id="p-home">Home</div></li></a>
 				<?php
-					if(isset($_SESSION['user']))
+					if(isset($_SESSION['id']))
 					{
-						if($_SESSION['record']==0||$_SESSION['last_accdec']=="decline"||$_SESSION['last_accdec']=="none")
+						if($stat=="NONE"||$stat=="DECLINE")
 							echo '<a onclick="goLoad(\'status\')" href="#"><li><div id="p-pengajuan">Pengajuan KP</div></li></a>';
-						else if($_SESSION['record']>0&&$_SESSION['last_accdec']=="pending")
+						else if($stat=="PENDING")
 							echo '<a onclick="goLoad(\'status\')" href="#"><li><div id="p-status">Status</div></li></a>';
-						else if($_SESSION['last_accdec']=="accept")
+						else if($stat=="ACCEPT")
 							echo '<a onclick="goLoad(\'registrasi\')" href="#"><li><div id="p-registrasi">Registrasi</div></li></a>';
 						
 						echo '<a onclick="goLoad(\'download\')" href="#"><li><div id="p-download">Download</div></li></a>';

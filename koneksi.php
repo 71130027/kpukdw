@@ -1,7 +1,7 @@
 <?php
-	$servername = "mysql.idhostinger.com";
-	$username = "u604461971_kpti";
-	$password = "kapefakultas2016";
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
 	$dbname = "u604461971_kpti";
 
 	// Create connection

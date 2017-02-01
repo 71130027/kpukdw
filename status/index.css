@@ -37,3 +37,24 @@ tr:nth-child(odd){
 	float: left;
 	text-align: center;
 }
+
+#surat-keterangan{
+	margin: 30px 1% 10px 1%;
+	height: 50px;
+	width: 300px;
+	position: relative;
+}
+
+#surat-keterangan div{
+	padding: 0 10;
+	border: 1px solid #000000;
+	position: absolute;
+	transform: translate(0, -50%);
+	top: 50%;
+}
+
+#surat-keterangan div button{
+	height: 30px;
+	background-color: transparent;
+	border: 1px solid #47A3DA;
+}
