@@ -9,7 +9,7 @@
 				<div id="cpanel">
 					<div class="cphome">
 						<?php session_start(); ?>
-						<form action="submit.php?type=kpreguler" method="post">
+						<form action="submit.php?type=kpreguler" method="post" enctype="multipart/form-data">
 							<p id="ctitle">KP Reguler</p>
 							<pre>Nama:				</pre>
 							<input name="nama" type="text" readonly value="<?php echo $_SESSION['user']; ?>">
@@ -52,6 +52,55 @@
 								<input id="kpb_alamat" name="kpb_alamat" type="text" required disabled>
 								<br>
 							</div>
+							<pre>Durasi Kerja Praktik:	</pre>
+							<select name="startmonth_kp" class="datemonth">
+								<option value="01">Januari</option>
+								<option value="02">Februari</option>
+								<option value="03">Maret</option>
+								<option value="04">April</option>
+								<option value="05">Mei</option>
+								<option value="06">Juni</option>
+								<option value="07">Juli</option>
+								<option value="08">Agustus</option>
+								<option value="09">September</option>
+								<option value="10">Oktober</option>
+								<option value="11">November</option>
+								<option value="12">Desember</option>
+							</select>
+							<select name="startyear_kp" class="dateyear">
+								<?php
+									$thisyear = date("Y");
+									for($i=0;$i<=2;$i++)
+									{
+										echo '<option value="'.($thisyear+$i).'">'.($thisyear+$i).'</option>';
+									}
+								?>
+							</select>
+							<pre>s/d</pre>
+							<select name="endmonth_kp" class="datemonth">
+								<option value="01">Januari</option>
+								<option value="02">Februari</option>
+								<option value="03">Maret</option>
+								<option value="04">April</option>
+								<option value="05">Mei</option>
+								<option value="06">Juni</option>
+								<option value="07">Juli</option>
+								<option value="08">Agustus</option>
+								<option value="09">September</option>
+								<option value="10">Oktober</option>
+								<option value="11">November</option>
+								<option value="12">Desember</option>
+							</select>
+							<select name="endyear_kp" class="dateyear">
+								<?php
+									$thisyear = date("Y");
+									for($i=0;$i<=2;$i++)
+									{
+										echo '<option value="'.($thisyear+$i).'">'.($thisyear+$i).'</option>';
+									}
+								?>
+							</select>
+							<br>
 							<pre>Job Description:		</pre>
 							<br>
 							<textarea name="jobdesc" class="multirow" type="text" required></textarea>
@@ -64,7 +113,7 @@
 							<pre>Rencana Mata Kuliah:	</pre>
 							<input name="rencana_matkul" type="file" required>
 							<br>
-							<input name="submit" id="csubmit" type="submit">
+                            <input name="submit" id="csubmit" type="submit" value="Ajukan">
 						</form>
 					</div>
 				</div>

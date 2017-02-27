@@ -12,11 +12,10 @@
 		if($res)
 		{
 			$res = $res['id_lamaran'];
-			$sql = "SELECT status_pengajuan FROM lamaran WHERE id_lamaran='".$res."'";
+			$sql = "SELECT status_pengajuan, status_registrasi, status_kp FROM lamaran WHERE id_lamaran='".$res."'";
 			$res = $conn->query($sql);
 			$res = $res->fetch_assoc();
-			$stat = $res['status_pengajuan'];
-			$_SESSION['last_statPengajuan'] = $stat;
+			$_SESSION['last_statPengajuan'] = $res['status_pengajuan'];
 		}
 	}
 ?>
@@ -57,11 +56,12 @@
 				<?php
 					if(isset($_SESSION['id']))
 					{
-						if($stat=="NONE"||$stat=="DECLINE")
+						if($res==false||$res['status_pengajuan']=="NONE"||$res['status_pengajuan']=="DECLINE"||
+						   $res['status_registrasi']=="DECLINE"||$res['status_kp']=="GUGUR")
 							echo '<a onclick="goLoad(\'status\')" href="#"><li><div id="p-pengajuan">Pengajuan KP</div></li></a>';
-						else if($stat=="PENDING")
+						else if($res['status_pengajuan']=="PENDING"||$res['status_registrasi']!="NONE")
 							echo '<a onclick="goLoad(\'status\')" href="#"><li><div id="p-status">Status</div></li></a>';
-						else if($stat=="ACCEPT")
+						else if($res['status_pengajuan']=="ACCEPT")
 							echo '<a onclick="goLoad(\'registrasi\')" href="#"><li><div id="p-registrasi">Registrasi</div></li></a>';
 						
 						echo '<a onclick="goLoad(\'download\')" href="#"><li><div id="p-download">Download</div></li></a>';

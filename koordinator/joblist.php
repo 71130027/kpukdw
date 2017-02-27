@@ -2,56 +2,44 @@
   include('header.php');
 ?>
 <body>
+
 <?php
 $connection = mysql_connect('localhost', 'root', ''); //The Blank string is the password
 mysql_select_db('kpukdw');
-
+$id_job = $id_perusahaan = $divisi = $job_desc = "";
   ?>
-
 <div class="continer">
 	<div class="divider" id="section1"></div>
 	<div class="row">	
-  <form id="download"action="upload.php" method="post" enctype="multipart/form-data">
-    <pre>Nama file :               </pre>   
-    <input style="width:300px;" type="text" name="filename" required>
+  <form id="download" action="insjob.php" method="post" enctype="multipart/form-data">
+    <pre>Nama Perusahaan :             </pre>   
+    <?php
+    $sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan  where aktif = 'Aktif' and list = 'Whitelist'";
+    $result = mysql_query($sql);
+
+    echo "<select style='width:300px;' name='id_perusahaan'>";
+    while ($row = mysql_fetch_array($result)) {
+    echo "<option value='" . $row['id_perusahaan'] ."'>" . $row['nama_perusahaan'] ."</option>";
+    }
+    echo "</select>";
+    ?>
     <br><br>
-    <pre>Deskripsi file :          </pre>
-    <textarea name="filedesc" rows="5" cols="40" required></textarea>
+    <pre>Divisi :                      </pre>   
+    <input style="width:300px;" type="text" name="divisi" value="<?php echo $divisi;?>" required>
     <br><br>
-    <pre>File :                    </pre><br><br>
-    <script>
-    $(document).ready(function() {
-    $('input:radio[name=uploadmethod]').click(function() {
-        var checkval = $('input:radio[name=uploadmethod]:checked').val();
-        $('#urllink').prop('disabled', !(checkval == 'url'));
-    });
-});
-    </script>
-        <script>
-    $(document).ready(function() {
-    $('input:radio[name=uploadmethod]').click(function() {
-        var checkval = $('input:radio[name=uploadmethod]:checked').val();
-        $('#file').prop('disabled', !(checkval == 'uploadfile'));
-    });
-});
-    </script>
-    <input type="radio" name="uploadmethod" value="url" checked><pre>Link :                 </pre>
-    <input style="width:300px;" type="text" name="fileurl" id="urllink" required>
+    <pre>Job Description :             </pre>   
+    <textarea name="job_desc" rows="5" cols="40" value="<?php echo $job_desc;?>"></textarea>
     <br><br>
-    <input type="radio" name="uploadmethod" value="uploadfile"><input type="file" name="file" id="file" disabled>
-    <br><br>
-    <input type="submit" value="Upload" name="upload">
+    <input type='submit' value='Submit' name='submit'>
   </form>						
 	</div><!--/row-->
-  <div class = "row">
-
+  <div class = 'row'>
 
 <?php
 
 
-
 // find out how many rows are in the table 
-$sql = mysql_query("SELECT count(*) FROM storage");
+$sql = mysql_query("SELECT count(*) FROM joblist");
 $r = mysql_fetch_row($sql);
 $numrows = $r[0];
 
@@ -84,38 +72,41 @@ if ($currentpage < 1) {
 $offset = ($currentpage - 1) * $rowsperpage;
 
 // get the info from the db 
-$result = mysql_query("SELECT * FROM storage");
+$result = mysql_query("SELECT joblist.id_job, perusahaan.nama_perusahaan, joblist.divisi, joblist.job_desc FROM joblist, perusahaan where joblist.id_perusahaan = perusahaan.id_perusahaan and perusahaan.aktif = 'Aktif' and perusahaan.list = 'Whitelist' order by perusahaan.nama_perusahaan LIMIT $offset, $rowsperpage");
 $no =1;
   if(mysql_num_rows($result)>0){
 echo "<table class = 'styletable'>
   <tr>
     <th>Nomor</th>
-    <th>Nama File</th>
-    <th>Deskripsi File</th>
-    <th>Action</th>
-  </tr>";
+    <th>Nama Perusahaan</th>
+    <th>Divisi</th>
+    <th>Job Description</th>
+    <th colspan='2'>Action</th>
+  </tr> ";
 
-  $sql = mysql_query("SELECT * FROM storage LIMIT $offset, $rowsperpage");
-  $no =1;
 // while there are rows to be fetched...
-while($data = mysql_fetch_assoc($sql)){
- echo '
-  <tr>
-      <td align="center">'.$no.'</td>
-      <td><a href="'.$data['lokasi'].'">'.$data['file'].'</a></td>
+while($data = mysql_fetch_array($result)){
+  ?>
+    <tr>
+      <td><font face=tahoma size=2><?php echo $no;?></font></td>
+      <td><font face=tahoma size=2><?php echo $data['nama_perusahaan']; ?></font></td>
+      <td><font face=tahoma size=2><?php echo $data['divisi']; ?></font></td>
+      <td><div><textarea rows="4" cols="40" style="background:transparent; border:none; height:100%;" disabled><?php echo ($data['job_desc']); ?></textarea></div></td>
+       <?php 
       
-      ';
+      echo "<td><a href='editjob.php?id=".$data['id_job']."'><button>Edit</button></a></td></font></td>";
+      echo "<td><a href='deletejob.php?id=".$data['id_job']."'><button>Delete</button></a></td></font></td>";
+      
+      
+
+
       ?>
-      <td><div><textarea disabled rows="4" cols="40" style="background:transparent; border:none; height:100%;"><?php echo ($data['file_desc']); ?></textarea></div></td>
-      <?php
-      echo "<td><a href='deletefile.php?id=".$data['id_file']."'><button>Delete</button></a></td></font></td>";
       
-      
-   echo" </tr>";
- 
+    </tr>
+  <?php
     $no++;    
-  }
-  echo "</table>";
+  }// end while
+echo "</table>";
 }
 ?>
   
@@ -123,7 +114,6 @@ while($data = mysql_fetch_assoc($sql)){
 /******  build the pagination links ******/
 // range of num links to show
 $range = 3;
-if($totalpages > 0){
 ?>
 <div class="pagination">
 <?php
@@ -154,7 +144,6 @@ for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
 } // end for
                  
 // if not on last page, show forward and last page links        
-
 if ($currentpage != $totalpages) {
    // get next page
    $nextpage = $currentpage + 1;
@@ -163,8 +152,6 @@ if ($currentpage != $totalpages) {
    // echo forward link for lastpage
    echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a> ";
 } // end if
-}
-
 /****** end build pagination links ******/
 ?>
 </div>
@@ -179,8 +166,6 @@ if ($currentpage != $totalpages) {
         
       </div>
 </div>
-
-
 
 
 

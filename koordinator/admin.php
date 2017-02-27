@@ -9,7 +9,7 @@
 	<div class="divider" id="section1"></div>
 	<div class="row">
 				
-<table class = "lamaran">
+<table class = "styletable">
   <tr>
     <th>ID</th>
     <th>Input Date</th>

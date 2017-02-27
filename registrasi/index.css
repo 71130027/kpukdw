@@ -53,8 +53,14 @@ tr:nth-child(odd){
 	top: 50%;
 }
 
-.surat div button{
+.buttons{
 	height: 30px;
 	background-color: transparent;
 	border: 1px solid #47A3DA;
+}
+
+p.surat-desc{
+	margin: 0 0 0 10px;
+	font-weight: 800;
+	font-size: 10pt;
 }

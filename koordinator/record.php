@@ -2,56 +2,29 @@
   include('header.php');
 ?>
 <body>
+
 <?php
 $connection = mysql_connect('localhost', 'root', ''); //The Blank string is the password
 mysql_select_db('kpukdw');
-
+$searchlamaran = "";
   ?>
-
 <div class="continer">
-	<div class="divider" id="section1"></div>
-	<div class="row">	
-  <form id="download"action="upload.php" method="post" enctype="multipart/form-data">
-    <pre>Nama file :               </pre>   
-    <input style="width:300px;" type="text" name="filename" required>
-    <br><br>
-    <pre>Deskripsi file :          </pre>
-    <textarea name="filedesc" rows="5" cols="40" required></textarea>
-    <br><br>
-    <pre>File :                    </pre><br><br>
-    <script>
-    $(document).ready(function() {
-    $('input:radio[name=uploadmethod]').click(function() {
-        var checkval = $('input:radio[name=uploadmethod]:checked').val();
-        $('#urllink').prop('disabled', !(checkval == 'url'));
-    });
-});
-    </script>
-        <script>
-    $(document).ready(function() {
-    $('input:radio[name=uploadmethod]').click(function() {
-        var checkval = $('input:radio[name=uploadmethod]:checked').val();
-        $('#file').prop('disabled', !(checkval == 'uploadfile'));
-    });
-});
-    </script>
-    <input type="radio" name="uploadmethod" value="url" checked><pre>Link :                 </pre>
-    <input style="width:300px;" type="text" name="fileurl" id="urllink" required>
-    <br><br>
-    <input type="radio" name="uploadmethod" value="uploadfile"><input type="file" name="file" id="file" disabled>
-    <br><br>
-    <input type="submit" value="Upload" name="upload">
-  </form>						
-	</div><!--/row-->
-  <div class = "row">
-
+<div id="search">
+  <form id="download" action="searchlamaran.php" method="post" enctype="multipart/form-data">
+  <pre>                                                                                                              </pre>
+  <input type="text" name="searchlamaran" value="<?php echo $searchlamaran;?>">
+  <input type="submit" name="submit" value="Search">
+  </form>
+  </div>
+  <div class="divider" id="section1"></div>
+ 
+  <div class = 'row'>
 
 <?php
 
 
-
 // find out how many rows are in the table 
-$sql = mysql_query("SELECT count(*) FROM storage");
+$sql = mysql_query("SELECT count(*) FROM lamaran, perusahaan where lamaran.id_perusahaan = perusahaan.id_perusahaan AND lamaran.status_registrasi = 'ACCEPT' and lamaran.status_kp<>'NONE' order by lamaran.tanggal_input");
 $r = mysql_fetch_row($sql);
 $numrows = $r[0];
 
@@ -84,38 +57,39 @@ if ($currentpage < 1) {
 $offset = ($currentpage - 1) * $rowsperpage;
 
 // get the info from the db 
-$result = mysql_query("SELECT * FROM storage");
+$result = mysql_query("SELECT * FROM lamaran, perusahaan where lamaran.id_perusahaan = perusahaan.id_perusahaan AND lamaran.status_registrasi = 'ACCEPT' and lamaran.status_kp<>'NONE' order by lamaran.tanggal_input LIMIT $offset, $rowsperpage");
 $no =1;
   if(mysql_num_rows($result)>0){
 echo "<table class = 'styletable'>
   <tr>
     <th>Nomor</th>
-    <th>Nama File</th>
-    <th>Deskripsi File</th>
+    <th>NIM</th>
+    <th>Nama</th>
+    <th>Nama Perusahaan</th>
     <th>Action</th>
-  </tr>";
+  </tr> ";
 
-  $sql = mysql_query("SELECT * FROM storage LIMIT $offset, $rowsperpage");
-  $no =1;
 // while there are rows to be fetched...
-while($data = mysql_fetch_assoc($sql)){
- echo '
-  <tr>
-      <td align="center">'.$no.'</td>
-      <td><a href="'.$data['lokasi'].'">'.$data['file'].'</a></td>
+while($data = mysql_fetch_array($result)){
+  ?>
+    <tr>
+      <td><font face=tahoma size=2><?php echo $no;?></font></td>
+      <td><font face=tahoma size=2><?php echo $data['nim']; ?></font></td>
+      <td><font face=tahoma size=2><?php echo $data['nama']; ?></font></td>
+      <td><font face=tahoma size=2><?php echo $data['nama_perusahaan']; ?></font></td>
+      <?php 
+      echo "<td><a href='tanggapan4.php?id=".$data['id_lamaran']."'><button>Detail</button></a></td></font></td>";
       
-      ';
+      
+
+
       ?>
-      <td><div><textarea disabled rows="4" cols="40" style="background:transparent; border:none; height:100%;"><?php echo ($data['file_desc']); ?></textarea></div></td>
-      <?php
-      echo "<td><a href='deletefile.php?id=".$data['id_file']."'><button>Delete</button></a></td></font></td>";
       
-      
-   echo" </tr>";
- 
+    </tr>
+  <?php
     $no++;    
-  }
-  echo "</table>";
+  }// end while
+echo "</table>";
 }
 ?>
   
@@ -163,10 +137,7 @@ if ($currentpage != $totalpages) {
    // echo forward link for lastpage
    echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a> ";
 } // end if
-}
-
-/****** end build pagination links ******/
-?>
+}?>
 </div>
 </div><!--/container-->
 <div id="footer">
@@ -179,6 +150,12 @@ if ($currentpage != $totalpages) {
         
       </div>
 </div>
+
+
+
+
+
+
 
 
 

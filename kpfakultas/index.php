@@ -28,7 +28,7 @@
 							<pre>No. Telepon aktif:		</pre>
 							<input name="telp" type="number" required>
 							<br>
-							<pre>Prioritas KP 1:			</pre>
+							<pre>Prioritas KP 1:		</pre>
 							<select name="kpc_1"required>
 								<option value="a">A</option>
 								<option value="b">B</option>
