@@ -28,7 +28,7 @@
 								<?php
 								include('../koneksi.php');
 								//Ambil data dari database
-								$sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan WHERE status='A'";
+								$sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan WHERE (status='A' OR status='B') AND aktif='A' AND list='WHITELIST' ORDER BY nama_perusahaan ASC";
 								$q = $conn->query($sql);
 								while($res=$q->fetch_assoc())
 								{
@@ -53,7 +53,7 @@
 								<br>
 							</div>
 							<pre>Durasi Kerja Praktik:	</pre>
-							<select name="startmonth_kp" class="datemonth">
+							<select name="startmonth" class="datemonth">
 								<option value="01">Januari</option>
 								<option value="02">Februari</option>
 								<option value="03">Maret</option>
@@ -67,7 +67,7 @@
 								<option value="11">November</option>
 								<option value="12">Desember</option>
 							</select>
-							<select name="startyear_kp" class="dateyear">
+							<select name="startyear" class="dateyear">
 								<?php
 									$thisyear = date("Y");
 									for($i=0;$i<=2;$i++)
@@ -77,7 +77,7 @@
 								?>
 							</select>
 							<pre>s/d</pre>
-							<select name="endmonth_kp" class="datemonth">
+							<select name="endmonth" class="datemonth">
 								<option value="01">Januari</option>
 								<option value="02">Februari</option>
 								<option value="03">Maret</option>
@@ -91,7 +91,7 @@
 								<option value="11">November</option>
 								<option value="12">Desember</option>
 							</select>
-							<select name="endyear_kp" class="dateyear">
+							<select name="endyear" class="dateyear">
 								<?php
 									$thisyear = date("Y");
 									for($i=0;$i<=2;$i++)
@@ -103,7 +103,7 @@
 							<br>
 							<pre>Job Description:		</pre>
 							<br>
-							<textarea name="jobdesc" class="multirow" type="text" required></textarea>
+							<textarea name="jobdesc" class="antimultirow" type="text" required></textarea>
 							<br>
 							<pre id="csubtitle">Lampiran (Scan):</pre>
 							<br>

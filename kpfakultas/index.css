@@ -28,18 +28,26 @@
 	display: inline;
 }
 
+.datemonth{
+	width: 120px;
+}
+
+.dateyear{
+	width: 60px;
+}
+
 .cphome input, select, textarea{
 	font-family: 'Noticia Text', serif;
 	font-size: 14pt;
 	margin-bottom: 20px;
 	height: 30px;
-	width: 350px;
+	width: 410px;
 }
 
-.cphome textarea.multirow{
-	max-width: 583px;
+.cphome textarea.antimultirow{
+	max-width: 643px;
 	height: 110px;
-	width: 583px;
+	width: 643px;
 }
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -55,6 +63,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 #csubmit{
 	background-color: #FFFFFF;
 	height: 40px;
-	width: 583px;
+	width: 643px;
 	border: 2px solid #47A3DA;
 }

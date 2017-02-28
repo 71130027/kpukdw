@@ -84,3 +84,10 @@ function onSignIn(googleUser) {
 		processData: false
 	});
 }
+
+$(".antimultirow").keydown(function(event) {
+	if (event.which == 13) {
+		alert("Hi");
+		event.preventDefault();
+	}
+});
