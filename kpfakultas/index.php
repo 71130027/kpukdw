@@ -145,6 +145,14 @@
 							<br>
 							<input name="submit" id="csubmit" type="submit">
 						</form>
+						<script>
+							$("textarea").keypress(function(event) {
+								if (event.which == 13) {
+									alert("Hi");
+									event.preventDefault();
+								}
+							});
+						</script>
 					</div>
 				</div>
 			</div>

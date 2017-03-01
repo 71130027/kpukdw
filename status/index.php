@@ -34,7 +34,7 @@
 									</thead>
 								<tbody>';
 							
-							$sql = "SELECT nama_perusahaan, tipe, status_pengajuan, status_registrasi, status_kp FROM lamaran, perusahaan WHERE perusahaan.id_perusahaan=lamaran.id_perusahaan";
+							$sql = "SELECT nama_perusahaan, tipe, status_pengajuan, status_registrasi, status_kp FROM lamaran, perusahaan WHERE perusahaan.id_perusahaan=lamaran.id_perusahaan AND google_id='".$_SESSION['id']."'";
 							$q = $conn->query($sql);
 							$i=0;
 							while($row = $q->fetch_array())
