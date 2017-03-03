@@ -27,15 +27,39 @@
 									</thead>
 									<tbody>';
 							
-							$sql = "SELECT nama_perusahaan, tipe, status_pengajuan, status_registrasi, status_kp FROM lamaran, perusahaan WHERE perusahaan.id_perusahaan=lamaran.id_perusahaan";
+							$sql = "SELECT id_lamaran, nama_perusahaan, kpc1, kpc2, tipe, status_pengajuan, status_registrasi, status_kp FROM lamaran, perusahaan WHERE perusahaan.id_perusahaan=lamaran.id_perusahaan";
 							$q = $conn->query($sql);
 							$i=0;
-							while($row = $q->fetch_array())
+							while($row = $q->fetch_assoc())
 							{
 								echo '<tr>
-										<td>'.($i+1).'</td>
-										<td>'.$row['nama_perusahaan'].'</td>
-										<td>'.$row['tipe'].'</td>';
+										<td>'.($i+1).'</td>';
+								if($row['tipe']=="C")
+								{
+									$sql = "SELECT nama_perusahaan FROM lamaran, perusahaan
+									WHERE id_lamaran='".$row['id_lamaran']."' AND (perusahaan.id_perusahaan=lamaran.id_perusahaan OR perusahaan.id_perusahaan=lamaran.kpc1 OR perusahaan.id_perusahaan=lamaran.kpc2)";
+									$query = $conn->query($sql);
+									$kpcperusahaan = $query->fetch_assoc();
+									$perusahaan=$kpcperusahaan['nama_perusahaan'];
+									if($row['kpc1']!=null)
+									{
+										$kpcperusahaan = $query->fetch_assoc();
+										$perusahaan=$perusahaan.'<br>'.$kpcperusahaan['nama_perusahaan'];
+										if($row['kpc2']!=null)
+										{
+											$kpcperusahaan = $query->fetch_assoc();
+											$perusahaan=$perusahaan.'<br>'.$kpcperusahaan['nama_perusahaan'];
+										}
+									}
+									echo '<td>'.$perusahaan.'</td>
+											<td>'.$row['tipe'].'</td>';
+								}
+								else
+								{
+									echo '<td>'.$row['nama_perusahaan'].'</td>
+											<td>'.$row['tipe'].'</td>';
+								}
+									
 								switch ($row['status_pengajuan'])
 								{
 									case "ACCEPT":     echo	'<td>DITERIMA</td>'; break;
@@ -61,18 +85,21 @@
 								{
 									echo '<td>-</td><td>-</td></tr>';
 								}
+								$type=$row['tipe'];
 								$i++;
 							}
 							
 							echo 	'</tbody>
 								</table>';
 						}
-						echo '<div class="surat">
+						if($type!="C")
+						{
+							echo '<div class="surat">
 								<div>
 									<pre>Download Surat Pengantar:	<a href="download.php" target="_blank"><button class="buttons">Download</button></a></pre>
 								</div>
-							</div>';
-						echo '<p class="surat-desc">Apabila sudah melakukan proses penerimaan KP di perusahaan dan telah mendapat Surat keterangan diterima,</p>
+							</div>
+							<p class="surat-desc">Apabila sudah melakukan proses penerimaan KP di perusahaan dan telah mendapat Surat keterangan diterima,</p>
 							<p class="surat-desc">Surat tersebut dapat diupload pada form di bawah ini.</p>
 							<div class="surat">
 								<div>
@@ -80,6 +107,7 @@
 									<pre><form action="upload.php" method="post" enctype="multipart/form-data"><input name="file_sk" type="file" required><input name="submit" class="buttons" type="submit" value="Upload"></pre>
 								</div>
 							</div>';
+						}
 					?>
 				</div>
 			</div>

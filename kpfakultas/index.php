@@ -9,16 +9,16 @@
 				<div id="cpanel">
 					<div class="cphome">
 						<?php session_start(); ?>
-						<form action="submit.php?type=kpfakultas" method="post">
+						<form action="submit.php?type=kpfakultas" method="post" enctype="multipart/form-data">
 							<p id="ctitle">KP Fakultas</p>
 							<pre>Nama:				</pre>
 							<input name="nama" type="text" readonly value="<?php echo $_SESSION['user']; ?>">
 							<br>
 							<pre>NIM:				</pre>
-							<input name="nim" type="text">
+							<input name="nim" type="number">
 							<br>
 							<pre>Jumlah SKS:			</pre>
-							<input name="sks" type="text">
+							<input name="sks" type="number">
 							<br>
 							<pre>No. Telepon aktif:		</pre>
 							<input name="telp" type="number" required>
@@ -27,10 +27,10 @@
 							<select name="kpc_1"required>
 								<?php
 									include('../koneksi.php');
-									$sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan WHERE status='C' ORDER BY nama_perusahaan DESC";
+									$sql = "SELECT id_job, divisi, nama_perusahaan, job_desc FROM joblist, perusahaan WHERE joblist.id_perusahaan=perusahaan.id_perusahaan ORDER BY divisi ASC, nama_perusahaan ASC";
 									$res = $conn->query($sql);
 									while($row=$res->fetch_assoc())
-										echo '<option value="'.$row['id_perusahaan'].'">'.$row['nama_perusahaan'].'</option>';
+										echo '<option value="'.$row['id_job'].'">['.$row['divisi']."] ".$row['nama_perusahaan'].' - '.$row['job_desc'].'</option>';
 								?>
 							</select>
 							<br>
@@ -38,10 +38,10 @@
 							<select id="kpc_2" name="kpc_2" onchange="kpc();">
 								<option value="none">Tidak ada</option>
 								<?php
-									$sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan WHERE status='C' ORDER BY nama_perusahaan DESC";
+									$sql = "SELECT id_job, divisi, nama_perusahaan, job_desc FROM joblist, perusahaan WHERE joblist.id_perusahaan=perusahaan.id_perusahaan ORDER BY divisi ASC, nama_perusahaan ASC";
 									$res = $conn->query($sql);
 									while($row=$res->fetch_assoc())
-										echo '<option value="'.$row['id_perusahaan'].'">'.$row['nama_perusahaan'].'</option>';
+										echo '<option value="'.$row['id_job'].'">['.$row['divisi']."] ".$row['nama_perusahaan'].' - '.$row['job_desc'].'</option>';
 								?>
 							</select>
 							<br>
@@ -49,10 +49,10 @@
 							<select id="kpc_3" name="kpc_3" disabled>
 								<option value="none">Tidak ada</option>
 								<?php
-									$sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan WHERE status='C' ORDER BY nama_perusahaan DESC";
+									$sql = "SELECT id_job, divisi, nama_perusahaan, job_desc FROM joblist, perusahaan WHERE joblist.id_perusahaan=perusahaan.id_perusahaan ORDER BY divisi ASC, nama_perusahaan ASC";
 									$res = $conn->query($sql);
 									while($row=$res->fetch_assoc())
-										echo '<option value="'.$row['id_perusahaan'].'">'.$row['nama_perusahaan'].'</option>';
+										echo '<option value="'.$row['id_job'].'">['.$row['divisi']."] ".$row['nama_perusahaan'].' - '.$row['job_desc'].'</option>';
 								?>
 							</select>
 							<br>
@@ -146,7 +146,7 @@
 							<input name="submit" id="csubmit" type="submit">
 						</form>
 						<script>
-							$("textarea").keypress(function(event) {
+							$(".antimultirow").keypress(function(event) {
 								if (event.which == 13) {
 									alert("Hi");
 									event.preventDefault();

@@ -18,8 +18,9 @@
         // Create Path
         $target_dir = "uploads/surat_keterangan/";
         $imageFileType = strtolower(pathinfo(basename($_FILES["file_sk"]["name"]),PATHINFO_EXTENSION));
-        // path/to/sk_file_1.jpg
-        $target_file = $target_dir."sk_".$res['nim']."_".$submission.".".$imageFileType;
+        // path/to/sk_00000nim_0000000id.jpg
+		$file_sk = "sk_".$res['nim']."_".$res['id_lamaran'].".".$imageFileType;
+        $target_file = $target_dir.$file_sk;
         $uploadOk = 1;
 
         // Check if image file is a actual image or fake image

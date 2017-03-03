@@ -6,7 +6,7 @@
 	$stat = 'NONE';
 	if(isset($_SESSION['id']))
 	{
-		$sql = "SELECT id_lamaran FROM lamaran WHERE google_id='".$_SESSION['id']."' ORDER BY id_lamaran DESC";
+		$sql = "SELECT id_lamaran FROM lamaran WHERE google_id='".$_SESSION['id']."' ORDER BY tanggal_input DESC";
 		$res = $conn->query($sql);
 		$res = $res->fetch_assoc();
 		if($res)

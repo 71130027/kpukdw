@@ -15,13 +15,13 @@
 							<input name="nama" type="text" readonly value="<?php echo $_SESSION['user']; ?>">
 							<br>
 							<pre>NIM:				</pre>
-							<input name="nim" type="text">
+							<input name="nim" type="number">
 							<br>
 							<pre>Jumlah SKS:			</pre>
-							<input name="sks" type="text">
+							<input name="sks" type="number">
 							<br>
 							<pre>No. Telepon Aktif:		</pre>
-							<input name="telp" type="text">
+							<input name="telp" type="number">
 							<br>
 							<pre>Nama Perusahaan:	</pre>
 							<select id="kpa" name="kpa" required onchange="kpab();">
