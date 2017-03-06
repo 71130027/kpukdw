@@ -27,38 +27,38 @@
 									</thead>
 									<tbody>';
 							
-							$sql = "SELECT id_lamaran, nama_perusahaan, kpc1, kpc2, tipe, status_pengajuan, status_registrasi, status_kp FROM lamaran, perusahaan WHERE perusahaan.id_perusahaan=lamaran.id_perusahaan";
+							$sql = "SELECT id_lamaran, kpc1, kpc2, tipe, status_pengajuan, status_registrasi, status_kp FROM lamaran, perusahaan
+							WHERE perusahaan.id_perusahaan=lamaran.id_perusahaan AND google_id='".$_SESSION['id']."' ORDER BY tanggal_input ASC";
 							$q = $conn->query($sql);
 							$i=0;
 							while($row = $q->fetch_assoc())
 							{
 								echo '<tr>
 										<td>'.($i+1).'</td>';
-								if($row['tipe']=="C")
+								
+								$sql = "SELECT nama_perusahaan, job_desc FROM lamaran, perusahaan
+								WHERE id_lamaran='".$row['id_lamaran']."' AND perusahaan.id_perusahaan=lamaran.id_perusahaan";
+								$query = $conn->query($sql);
+								$kpcperusahaan = $query->fetch_assoc();
+								$perusahaan='<abbr title="'.$kpcperusahaan['job_desc'].'"><u>'.$kpcperusahaan['nama_perusahaan'].'</abbr>';
+								if($row['kpc1']!=-1)
 								{
-									$sql = "SELECT nama_perusahaan FROM lamaran, perusahaan
-									WHERE id_lamaran='".$row['id_lamaran']."' AND (perusahaan.id_perusahaan=lamaran.id_perusahaan OR perusahaan.id_perusahaan=lamaran.kpc1 OR perusahaan.id_perusahaan=lamaran.kpc2)";
+									$sql = "SELECT nama_perusahaan, kpc1_jd FROM lamaran, perusahaan
+									WHERE id_lamaran='".$row['id_lamaran']."' AND perusahaan.id_perusahaan=lamaran.kpc1";
 									$query = $conn->query($sql);
 									$kpcperusahaan = $query->fetch_assoc();
-									$perusahaan=$kpcperusahaan['nama_perusahaan'];
-									if($row['kpc1']!=null)
+									$perusahaan=$perusahaan.'<br><abbr title="'.$kpcperusahaan['kpc1_jd'].'">'.$kpcperusahaan['nama_perusahaan'].'</abbr>';
+									if($row['kpc2']!=-1)
 									{
+										$sql = "SELECT nama_perusahaan, kpc2_jd FROM lamaran, perusahaan
+										WHERE id_lamaran='".$row['id_lamaran']."' AND perusahaan.id_perusahaan=lamaran.kpc2";
+										$query = $conn->query($sql);
 										$kpcperusahaan = $query->fetch_assoc();
-										$perusahaan=$perusahaan.'<br>'.$kpcperusahaan['nama_perusahaan'];
-										if($row['kpc2']!=null)
-										{
-											$kpcperusahaan = $query->fetch_assoc();
-											$perusahaan=$perusahaan.'<br>'.$kpcperusahaan['nama_perusahaan'];
-										}
+										$perusahaan=$perusahaan.'<br><abbr title="'.$kpcperusahaan['kpc2_jd'].'">'.$kpcperusahaan['nama_perusahaan'].'</abbr>';
 									}
-									echo '<td>'.$perusahaan.'</td>
-											<td>'.$row['tipe'].'</td>';
 								}
-								else
-								{
-									echo '<td>'.$row['nama_perusahaan'].'</td>
-											<td>'.$row['tipe'].'</td>';
-								}
+								echo '</u><td>'.$perusahaan.'</td>
+										<td>'.$row['tipe'].'</td>';
 									
 								switch ($row['status_pengajuan'])
 								{

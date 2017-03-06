@@ -197,16 +197,16 @@
 						}
 						else
 						{
-							$kpc2=null;
-							$kpc2_jd=null;
+							$kpc2=-1;
+							$kpc2_jd=-1;
 						}
 					}
 					else
 					{
-						$kpc1=null;
-						$kpc1_jd=null;
-						$kpc2=null;
-						$kpc2_jd=null;
+						$kpc1=-1;
+						$kpc1_jd=-1;
+						$kpc2=-1;
+						$kpc2_jd=-1;
 					}
 					$type = "C";
 					

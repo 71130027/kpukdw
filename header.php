@@ -22,7 +22,7 @@
 <html>
 	<head>
 		<title>KaPeTI</title>
-		<script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+		<script src="jquery-3.1.1.min.js"></script>
 		<script src="scripts.js"></script>
 		<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 		<meta name="google-signin-client_id" content="650232885328-e6gsbsa4vgi5gv0nbv87ntjgiar9cfaq.apps.googleusercontent.com">

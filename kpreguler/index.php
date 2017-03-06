@@ -28,11 +28,11 @@
 								<?php
 								include('../koneksi.php');
 								//Ambil data dari database
-								$sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan WHERE (status='A' OR status='B') AND aktif='A' AND list='WHITELIST' ORDER BY nama_perusahaan ASC";
+								$sql = "SELECT id_perusahaan, nama_perusahaan, status FROM perusahaan WHERE (status='A' OR status='B') AND aktif='A' AND list='WHITELIST' ORDER BY nama_perusahaan ASC";
 								$q = $conn->query($sql);
 								while($res=$q->fetch_assoc())
 								{
-									echo '<option value="'.$res['id_perusahaan'].'">'.$res['nama_perusahaan'].'</option>';
+									echo '<option value="'.$res['id_perusahaan'].'">'.$res['nama_perusahaan'].' [KP'.$res['status'].']</option>';
 								}
 								?>
 								<option value="other">Lainnya...</option>

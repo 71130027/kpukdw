@@ -14,7 +14,7 @@ $id_job = $id_perusahaan = $divisi = $job_desc = "";
   <form id="download" action="insjob.php" method="post" enctype="multipart/form-data">
     <pre>Nama Perusahaan :             </pre>   
     <?php
-    $sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan  where aktif = 'Aktif' and list = 'Whitelist'";
+    $sql = "SELECT id_perusahaan, nama_perusahaan FROM perusahaan  where aktif = 'Aktif' and list = 'Whitelist' and status = 'C'";
     $result = mysql_query($sql);
 
     echo "<select style='width:300px;' name='id_perusahaan'>";
@@ -44,7 +44,7 @@ $r = mysql_fetch_row($sql);
 $numrows = $r[0];
 
 // number of rows to show per page
-$rowsperpage = 1;
+$rowsperpage = 2;
 // find out total pages
 $totalpages = ceil($numrows / $rowsperpage);
 
@@ -114,6 +114,7 @@ echo "</table>";
 /******  build the pagination links ******/
 // range of num links to show
 $range = 3;
+if($totalpages > 0){
 ?>
 <div class="pagination">
 <?php
@@ -151,7 +152,7 @@ if ($currentpage != $totalpages) {
    echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage'>></a> ";
    // echo forward link for lastpage
    echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a> ";
-} // end if
+}} // end if
 /****** end build pagination links ******/
 ?>
 </div>

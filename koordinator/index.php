@@ -77,12 +77,25 @@ echo "<table class = 'styletable'>
 
 // while there are rows to be fetched...
 while($data = mysql_fetch_array($result)){
+  
   ?>
     <tr>
       <td><font face=tahoma size=2><?php echo $no;?></font></td>
       <td><font face=tahoma size=2><?php echo $data['nim']; ?></font></td>
       <td><font face=tahoma size=2><?php echo $data['nama']; ?></font></td>
-      <td><font face=tahoma size=2><?php echo $data['nama_perusahaan']; ?></font></td>
+      <?php
+
+        if($data['tipe']=='C'){
+          $query=mysql_query("select perusahaan.nama_perusahaan from lamaran, perusahaan where lamaran.id_lamaran = '".$data['id_lamaran']."' and (perusahaan.id_perusahaan = lamaran.id_perusahaan or perusahaan.id_perusahaan = lamaran.kpc1 or perusahaan.id_perusahaan = lamaran.kpc2)");
+          $string="";
+          while($query2 = mysql_fetch_assoc($query)){
+            $string=$string.$query2['nama_perusahaan'].'<br>';
+          }
+          //if($query2['kpc2']!=NULL){
+            echo'<td><font face=tahoma size=2>'.$string.'</font></td>';
+          //}
+        }
+      ?>
       <?php 
       echo "<td><a href='tanggapan.php?id=".$data['id_lamaran']."'><button>Detail</button></a></td></font></td>";
       
@@ -94,9 +107,10 @@ while($data = mysql_fetch_array($result)){
     </tr>
   <?php
     $no++;    
+  }
   }// end while
 echo "</table>";
-}
+
 ?>
   
 <?php 

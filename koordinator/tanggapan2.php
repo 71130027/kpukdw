@@ -24,6 +24,14 @@ $query2=mysql_fetch_array($query1);
     <pre>Nama :                        </pre>
     <input style="width:300px;" type="text" name="nim" value="<?php echo $query2['nama']; ?>" disabled>
     <br><br>
+    <?php
+        echo "<form  action='terimalamaran2.php?id=".$query2['id_lamaran']."' method='post' enctype='multipart/form-data'>";
+        if($tipe=='C'){
+
+        }
+        else{
+
+    ?>
     <pre>Nama Perusahaan :             </pre>
     <input style="width:300px;" type="text" name="nim" value="<?php echo $query2['nama_perusahaan']; ?>" disabled>
     <br><br>
@@ -36,6 +44,9 @@ $query2=mysql_fetch_array($query1);
     <pre>Telpon Perusahaan :           </pre>
     <input style="width:300px;" type="text" name="nim" value="<?php echo $query2['telpon_perusahaan']; ?>" disabled>
     <br><br>
+    <?php
+    }
+    ?>
     <pre>Tipe :                        </pre>
     <input style="width:300px;" type="text" name="nim" value="<?php echo $query2['tipe']; ?>" disabled>
     <br><br>
@@ -69,15 +80,13 @@ $query2=mysql_fetch_array($query1);
     <pre>Status Registrasi :           </pre>
     <input style="width:300px;" type="text" name="nim" value="<?php echo $query2['status_registrasi']; ?>" disabled>
     <br><br>
-    <?php
-    echo "<form  action='terimalamaran2.php?id=".$query2['id_lamaran']."' method='post' enctype='multipart/form-data'>";
-    ?>
+   
     <pre>Dosen Pembimbing :            </pre>
     <?php
     $sql = "SELECT * FROM dosen";
     $result = mysql_query($sql);
 
-    echo "<select style='width:300px;' name='dosen'>";
+    echo "<select style='width:300px;' name='dosen' required>";
     while ($row = mysql_fetch_array($result)) {
     echo "<option value='" . $row['dosen_pembimbing'] ."'>" . $row['nama'] ."</option>";
     }
