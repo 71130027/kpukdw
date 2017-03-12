@@ -48,7 +48,7 @@ if($query4['tipe']=='C'){
 
 		$query8=mysql_query("update lamaran set id_perusahaan = '$kpc1', job_desc = '$kpc1_jd' where id_lamaran ='$id'");
 		$query9=mysql_query("update lamaran set kpc1 = NULL, kpc1_jd = NULL, kpc2 = NULL, kpc2_jd = NULL where id_lamaran = '$id'");
-		$query10=mysql_query("update lamaran set status_pengajuan='$accept' where id_lamaran='$id'");
+		$query10=mysql_query("update lamaran set status_pengajuan='$accept', status_registrasi='PENDING' where id_lamaran='$id'");
 		header('location:index.php');
 	}
 	if($radio == '3'){
@@ -59,12 +59,12 @@ if($query4['tipe']=='C'){
 
 		$query8=mysql_query("update lamaran set id_perusahaan = '$kpc1', job_desc = '$kpc1_jd' where id_lamaran ='$id'");
 		$query9=mysql_query("update lamaran set kpc1 = NULL, kpc1_jd = NULL, kpc2 = NULL, kpc2_jd = NULL where id_lamaran = '$id'");
-		$query10=mysql_query("update lamaran set status_pengajuan='$accept' where id_lamaran='$id'");
+		$query10=mysql_query("update lamaran set status_pengajuan='$accept', status_registrasi='PENDING' where id_lamaran='$id'");
 		header('location:index.php');
 	}
 	else{
 		$query9=mysql_query("update lamaran set kpc1 = NULL, kpc1_jd = NULL, kpc2 = NULL, kpc2_jd = NULL where id_lamaran = '$id'");
-		$query10=mysql_query("update lamaran set status_pengajuan='$accept' where id_lamaran='$id'");
+		$query10=mysql_query("update lamaran set status_pengajuan='$accept', status_registrasi='PENDING' where id_lamaran='$id'");
 		header('location:index.php');
 	}
 }

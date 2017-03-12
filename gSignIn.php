@@ -5,7 +5,14 @@
 	$_SESSION['id'] = $_POST['id'];
 	//if email dosen tambahin status session
 	//$_SESSION['type']="dosen";
-	//$_SESSION['type']="koor";
+	if($_SESSION['email']=="jonathan.aditya@ti.ukdw.ac.id")
+	{
+		$_SESSION['type']="koordinator";
+	}
+	else
+	{
+		$_SESSION['type']="mahasiswa";
+	}
 
 	die();
 ?>

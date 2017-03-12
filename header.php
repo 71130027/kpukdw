@@ -3,6 +3,14 @@
 	include('koneksi.php');
 	session_start();
 	//lempar ke dosen/koor
+	if(isset($_SESSION['type']))
+	{
+		if($_SESSION['type']=="koordinator")
+		{
+			header("Location: koordinator");
+		}
+	}
+	
 	$stat = 'NONE';
 	if(isset($_SESSION['id']))
 	{

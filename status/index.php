@@ -104,8 +104,22 @@
 						}
 						if($num==0||strcmp($last_pengajuan, "DECLINE")==0||strcmp($last_registration, "DECLINE")==0||strcmp($last_kp, "GUGUR")==0)
 						{
-							echo '<a onclick="goLoad(\'kpreguler\')" href="#"><div class="cphome">KP Reguler</div></a>
-							<a onclick="goLoad(\'kpfakultas\')" href="#"><div class="cphome">KP Fakultas</div></a>';
+							echo '<a onclick="goLoad(\'kpreguler\')" href="#">
+									<div class="cphome">
+										KP Reguler
+										<br>
+										<br>
+										<image src="status/kpreg.png" width="100">
+									</div>
+								</a>
+								<a onclick="goLoad(\'kpfakultas\')" href="#">
+									<div class="cphome">
+										KP Fakultas
+										<br>
+										<br>
+										<image src="status/kpfak.png" width="100">
+									</div>
+								</a>';
 						}
 						else if($_SESSION['last_statPengajuan']=="ACCEPT" && strcmp($last_registration, "NONE")==0)
 						{

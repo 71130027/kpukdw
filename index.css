@@ -5,13 +5,18 @@
 
 .cphome{
 	width: 29.833%;
-	height: 150px;
+	min-height: 150px;
 	margin: 10px 1%;
 	padding: 40px 0.75%;
 	background-color: #FFFFFF;
 	float: left;
 	text-align: center;
 	display: inline-block;
+}
+
+.cphome div{
+	min-height: 150px;
+	background-color: #FFFFFF;
 }
 
 .cphome p{

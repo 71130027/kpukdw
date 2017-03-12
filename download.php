@@ -124,10 +124,12 @@ $pdf->Cell(15,7,'',0,0,'L'); $pdf->Cell(75,7,'Durasi Kerja Praktik',0,0,'L'); $p
 $pdf->SetFont('Times','B',11);
 $pdf->Cell(15,7,'',0,0,'L'); $pdf->Cell(75,7,'Daftar Pekerjaan',0,0,'L'); $pdf->SetFont('Times','',11); $pdf->Cell(0,8,': ',0,1,'L');
 
-$pdf->SetFont('Times','B',11);
 for($i=0;$i<count($job_desc);$i++)
 {
-	$pdf->Cell(25,7,'',0,0,'L'); $pdf->Cell(0,8,'- '.$job_desc[$i],0,1,'L');
+	$pdf->SetFont('Times','B',11);
+	$pdf->Cell(25,7,'',0,0,'L');
+	$pdf->SetFont('Times','',11);
+	$pdf->Cell(0,8,'- '.$job_desc[$i],0,1,'L');
 }
 
 $pdf->Cell(0,12,'',0,1,'L');
